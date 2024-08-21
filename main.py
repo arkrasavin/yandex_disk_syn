@@ -21,7 +21,7 @@ def main():
                 try:
                     logger.info('Начался цикл синхронизации')
                     monitor_folder.sync_with_cloud()
-                    logger.info('Синхронизация завершена')
+                    logger.info(f'Синхронизация завершена, проверка через {check_interval / 60} минут')
                 except Exception as exception:
                     logger.error(exception)
 
