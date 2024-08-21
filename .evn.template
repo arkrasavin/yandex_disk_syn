@@ -1,0 +1,5 @@
+API_KEY=Ваш ключ api
+PATH_TO_LOCAL_DIR=/путь/до/локальной/папки
+PATH_TO_DIR_DISK=/путь/в/облачное/хранилище
+CHECK_INTERVAL=1800  # интервал в секундах (например, 30 минут)
+PATH_TO_LOG_FILE=logs/file_log.log
