@@ -70,7 +70,6 @@ class YandexDisk(BaseSession):
         super().__init__()
         self.token: str = token
         self.folder_backup: str = folder_backup
-        # self.session_adapter: requests.Session = self.session_with_request()
         self.base_url: str = "https://cloud-api.yandex.net/v1/disk/resources"
         self.headers.update({"Authorization": f"OAuth {self.token}"})
         self.list_files_cloud: List[str] = []
