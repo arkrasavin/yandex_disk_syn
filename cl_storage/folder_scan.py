@@ -72,7 +72,7 @@ class ScanFolder:
         for j_cloud_file in cloud_files:
             if j_cloud_file not in current_files:
                 logger.info(
-                    f"Удаляется файл {j_cloud_file} в связи его отсутствием в локальной папке"
+                    f"Удаляется файл '{j_cloud_file}' в связи его отсутствием в локальной папке"
                 )
                 self.storage.delete(j_cloud_file)
             else:
@@ -82,11 +82,11 @@ class ScanFolder:
 
         for i_name, i_hash in current_files.items():
             if i_name not in cloud_files:
-                logger.info(f'Загрузка нового файла "{i_name}" в облако')
+                logger.info(f"Загрузка нового файла '{i_name}' в облако")
                 self.storage.load(i_name)
             elif self.tracked_files[i_name] != i_hash:
-                logger.info(f'Найден измененный файл "{i_name}". Синхронизация.')
+                # logger.info(f'Найден измененный файл "{i_name}". Синхронизация.')
                 self.storage.load(i_name, True)
-                logger.info(f'Синхронизация завершена. "{i_name}" перезаписан.')
+                logger.info(f"Синхронизация завершена. '{i_name}' перезаписан.")
             elif self.tracked_files[i_name] == i_hash:
-                logger.info("Обновление не требуется.")
+                logger.info(f"Обновление файла '{i_name}' не требуется.")

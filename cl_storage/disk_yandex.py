@@ -123,7 +123,7 @@ class YandexDisk(BaseSession):
             return response.json().get("md5")
 
         except RequestException as error:
-            logger.error(f"Ошибка при получении хэша файла {file_name}: {error}")
+            logger.error(f"Ошибка при получении хэша файла '{file_name}': {error}")
             return None
 
     def check_exists_file_storage(self, file_name: str) -> bool:
@@ -140,7 +140,7 @@ class YandexDisk(BaseSession):
 
         except RequestException as error:
             logger.error(
-                f"Возникла ошибка при проверке существования файла {file_name}: {error}"
+                f"Возникла ошибка при проверке существования файла '{file_name}': {error}"
             )
             return False
 
@@ -154,7 +154,7 @@ class YandexDisk(BaseSession):
         """
         full_local_path = self.get_full_path(name_file)
         if not os.path.isfile(full_local_path):
-            logger.info(f"Файл {name_file} по пути {full_local_path} не существует")
+            logger.info(f"Файл '{name_file}' по пути '{full_local_path}' не существует")
             return
 
         url_upload = f"{self.base_url}/upload"
@@ -166,7 +166,7 @@ class YandexDisk(BaseSession):
             response = self.request("GET", url_upload, params=params)
             response.raise_for_status()
             link_upload = response.json().get("href")
-            logger.info(f"Ссылка для загрузки получена: {link_upload}")
+            # logger.info(f"Ссылка для загрузки получена: {link_upload}")
 
             with open(full_local_path, "rb") as file:
                 result = self.request("PUT", link_upload, data=file)
